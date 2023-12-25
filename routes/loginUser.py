@@ -3,7 +3,12 @@ import mysql.connector
 
 loginUser = Blueprint('loginUser', __name__)
 
-
+class User:
+    def __init__(self, user_id, avatar_url, username, delete_count):
+        self.user_id = user_id
+        self.avatar_url = avatar_url
+        self.username = username
+        self.delete_count = delete_count
 @loginUser.route('/user/loginUser', methods=['POST'])
 def loginuser():
     try:
@@ -29,11 +34,14 @@ def loginuser():
         for result in cursor.stored_results():
             backs = result.fetchall()
             for back in backs:
-                results.append(back)
+                user = User(back[3], back[4], back[0], back[2])  # 创建User对象
+                results.append(user)
         print(f'数据库结果：{results}')
-        if results[0][0] == '1':
+
+        # 修改这部分以返回User对象
+        if results and results[0]:
             login_result_message = {'result': True,
-                                    'delete_num': results[0][2]}
+                                    'user': results[0].__dict__}  # 转换为字典
         else:
             login_result_message = {'result': False}
 
