@@ -24,7 +24,7 @@ def deleteByid():
         result = cursor.stored_results()
         validation_result = list(result)[0].fetchone()[0]
         print(f'数据库验证结果：{validation_result}')
-        response_data = {"result": True if validation_result == 'avatarUrl changed successfully.' else False}
+        response_data = {"success": True if validation_result == 'avatarUrl changed successfully.' else False}
         return jsonify()
 
     except mysql.connector.Error as err:

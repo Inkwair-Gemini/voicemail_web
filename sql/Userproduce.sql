@@ -70,10 +70,10 @@ BEGIN
         SELECT '1','登录成功',a_id,a_avatarUrl,p_username,d_count AS result;
 
     ELSEIF f_count > 0 THEN
-        SELECT '0','密码不正确' AS result;
+        SELECT '0','密码不正确',0,0,0,0 AS result;
 
     ELSE
-        SELECT '0','用户不存在' AS result;
+        SELECT '0','用户不存在',0,0,0,0 AS result;
     END IF;
 END//
 DELIMITER ;

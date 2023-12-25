@@ -39,7 +39,7 @@ def loginuser():
         print(f'数据库结果：{results}')
 
         # 修改这部分以返回User对象
-        if results and results[0]:
+        if results[0] =='1':
             login_result_message = {'success': True,
                                     'user': results[0].__dict__}  # 转换为字典
         else:

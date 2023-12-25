@@ -70,7 +70,7 @@ def addvoice():
             for back in backs:
                 results.append(back)
         print(f'数据库结果：{results}')
-        response_result = {'result': True if results[0][0] == '添加成功' else False}
+        response_result = {'success': True if results[0][0] == '添加成功' else False}
         print(response_result)
         return jsonify(response_result)
 
