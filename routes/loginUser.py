@@ -4,11 +4,11 @@ import mysql.connector
 loginUser = Blueprint('loginUser', __name__)
 
 class User:
-    def __init__(self, user_id, avatar_url, username, delete_count):
-        self.user_id = user_id
-        self.avatar_url = avatar_url
+    def __init__(self, id, username,avatarUrl, deleteListNumber):
+        self.id = id
         self.username = username
-        self.delete_count = delete_count
+        self.avatarUrl = avatarUrl
+        self.deleteListNumber = deleteListNumber
 @loginUser.route('/user/loginUser', methods=['POST'])
 def loginuser():
     try:
@@ -34,7 +34,7 @@ def loginuser():
         for result in cursor.stored_results():
             backs = result.fetchall()
             for back in backs:
-                user = User(back[2], back[3], back[4], back[5])  # 创建User对象
+                user = User(back[2], back[4], back[3], back[5])  # 创建User对象
                 results.append(user)
         print(f'数据库结果：{results}')
 
