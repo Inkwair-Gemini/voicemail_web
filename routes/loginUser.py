@@ -40,10 +40,10 @@ def loginuser():
 
         # 修改这部分以返回User对象
         if results and results[0]:
-            login_result_message = {'result': True,
+            login_result_message = {'success': True,
                                     'user': results[0].__dict__}  # 转换为字典
         else:
-            login_result_message = {'result': False}
+            login_result_message = {'success': False}
 
         # 返回结果
         print(login_result_message)
