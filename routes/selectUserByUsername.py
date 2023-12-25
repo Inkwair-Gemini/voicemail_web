@@ -1,8 +1,7 @@
-from flask import jsonify, Blueprint, current_app, request
+from flask import jsonify, Blueprint, current_app, request, Response
 import mysql.connector
 
 selectUserByUsername = Blueprint('selectUserByUsername', __name__)
-
 
 @selectUserByUsername.route('/user/selectUserByUsername', methods=['POST'])
 def selectUserByusername():
@@ -24,7 +23,12 @@ def selectUserByusername():
         print(f'数据库验证结果：{validation_result}')
         response_data = {"result": True if validation_result == 'Ture' else False}
         print(response_data)
-        return jsonify(response_data)
+
+        # 创建带有新请求头的响应对象
+        response = jsonify(response_data)
+        response.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+        print(response)
+        return response
 
     except mysql.connector.Error as err:
         print("数据库错误:", err)
@@ -36,3 +40,4 @@ def selectUserByusername():
             cursor.close()
         if connection:
             connection.close()
+
