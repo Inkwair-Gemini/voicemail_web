@@ -4,7 +4,7 @@ import mysql.connector
 sendAllVoice = Blueprint('sendAllVoice', __name__)
 
 
-@sendAllVoice.route('/sendAllVoice', methods=['POST'])
+@sendAllVoice.route('/user/sendAllVoice', methods=['POST'])
 def sendAllvoice():
     try:
         db_pool = current_app.config.get('db_pool')

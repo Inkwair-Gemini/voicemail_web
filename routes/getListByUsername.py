@@ -4,7 +4,7 @@ import mysql.connector
 getListByUsername = Blueprint('getListByUsername', __name__)
 
 
-@getListByUsername.route('/getListByUsername', methods=['POST'])
+@getListByUsername.route('/user/getListByUsername', methods=['POST'])
 def getListByusername():
     try:
         db_pool = current_app.config.get('db_pool')

@@ -15,7 +15,7 @@ os.environ["HTTP_PROXY"] = "127.0.0.1:7890"
 os.environ["HTTPS_PROXY"] = "127.0.0.1:7890"
 
 addVoice = Blueprint('addVoice', __name__)
-@addVoice.route('/addVoice', methods=['POST'])
+@addVoice.route('/user/addVoice', methods=['POST'])
 def addvoice():
     try:
         db_pool = current_app.config.get('db_pool')

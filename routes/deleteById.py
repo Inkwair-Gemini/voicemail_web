@@ -4,7 +4,7 @@ import mysql.connector
 deleteById = Blueprint('deleteById', __name__)
 
 
-@deleteById.route('/deleteById', methods=['POST'])
+@deleteById.route('/user/deleteById', methods=['POST'])
 def deleteByid():
     try:
         db_pool = current_app.config.get('db_pool')

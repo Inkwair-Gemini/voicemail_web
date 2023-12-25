@@ -35,6 +35,8 @@ CREATE PROCEDURE LoginVerify(IN p_username varchar(100) , IN p_password VARCHAR(
 BEGIN
     DECLARE v_count INT;
     DECLARE d_count INT;
+    DECLARE a_id INT;
+    DECLARE a_avatarUrl VARCHAR(100);
     DECLARE v_username VARCHAR(255);
     DECLARE f_count VARCHAR(255);
     -- 检查是否存在匹配的记录
@@ -50,6 +52,14 @@ BEGIN
     FROM user
     WHERE username = p_username AND password != p_password;
 
+    SELECT COUNT(*) INTO a_id
+    FROM user
+    WHERE username = p_username AND password = p_password;
+
+    SELECT avatarUrl INTO a_avatarUrl
+    FROM user
+    WHERE username = p_username AND password = p_password;
+
     -- 设置布尔值结果
     IF v_count > 0 THEN
         -- 查询用户的名字
@@ -57,7 +67,7 @@ BEGIN
         FROM user
         WHERE username = p_username;
 
-        SELECT '1','登录成功',d_count AS result;
+        SELECT '1','登录成功',a_id,a_avatarUrl,p_username,d_count AS result;
 
     ELSEIF f_count > 0 THEN
         SELECT '0','密码不正确' AS result;

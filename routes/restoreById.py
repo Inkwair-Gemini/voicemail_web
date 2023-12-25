@@ -4,7 +4,7 @@ import mysql.connector
 restoreById = Blueprint('restoreById', __name__)
 
 
-@restoreById.route('/restoreById', methods=['POST'])
+@restoreById.route('/user/restoreById', methods=['POST'])
 def restoreByid():
     try:
         db_pool = current_app.config.get('db_pool')

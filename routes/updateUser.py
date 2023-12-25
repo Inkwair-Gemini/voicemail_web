@@ -4,7 +4,7 @@ import mysql.connector
 updateUser = Blueprint('updateUser', __name__)
 
 
-@updateUser.route('/updateUser', methods=['POST'])
+@updateUser.route('/user/updateUser', methods=['POST'])
 def updateuser():
     try:
         db_pool = current_app.config.get('db_pool')

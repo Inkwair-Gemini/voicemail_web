@@ -4,7 +4,7 @@ import mysql.connector
 deleteVoiceByid = Blueprint('deleteVoiceByid', __name__)
 
 
-@deleteVoiceByid.route('/deleteVoiceByid', methods=['POST'])
+@deleteVoiceByid.route('/user/deleteVoiceByid', methods=['POST'])
 def deletevoiceByid():
     try:
         db_pool = current_app.config.get('db_pool')
