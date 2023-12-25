@@ -34,7 +34,7 @@ def loginuser():
         for result in cursor.stored_results():
             backs = result.fetchall()
             for back in backs:
-                user = User(back[3], back[4], back[0], back[2])  # 创建User对象
+                user = User(back[2], back[3], back[4], back[5])  # 创建User对象
                 results.append(user)
         print(f'数据库结果：{results}')
 
