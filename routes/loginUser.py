@@ -34,12 +34,14 @@ def loginuser():
         for result in cursor.stored_results():
             backs = result.fetchall()
             for back in backs:
+                pend = back[0]
                 user = User(back[2], back[4], back[3], back[5])  # 创建User对象
                 results.append(user)
         print(f'数据库结果：{results}')
 
         # 修改这部分以返回User对象
-        if results[0] =='1':
+        print(pend)
+        if pend =='1':
             login_result_message = {'success': True,
                                     'user': results[0].__dict__}  # 转换为字典
         else:
