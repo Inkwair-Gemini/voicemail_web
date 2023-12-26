@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS voice (
     id INT(8) UNSIGNED ZEROFILL PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(100) NOT NULL,
     title VARCHAR(100),
-    timestamp DATETIME,
+    timestamp DATE,
     text VARCHAR(10000),
     url VARCHAR(100),
     deletestatus TINYINT(1) NOT NULL DEFAULT 0,
