@@ -1,11 +1,11 @@
 from flask import jsonify, Blueprint, current_app, request
 import mysql.connector
 
-restoreById = Blueprint('restoreById', __name__)
+recoverById = Blueprint('recoverById', __name__)
 
 
-@restoreById.route('/delete/recoverById', methods=['POST'])
-def restoreByid():
+@recoverById.route('/delete/recoverById', methods=['POST'])
+def recoverByid():
     try:
         db_pool = current_app.config.get('db_pool')
         # 从连接池获取连接
