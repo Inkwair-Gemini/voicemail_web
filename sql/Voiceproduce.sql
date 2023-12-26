@@ -44,7 +44,7 @@ BEGIN
 END;
 
 -- 恢复语音信息
-CREATE PROCEDURE restoreById(
+CREATE PROCEDURE recoverById(
     IN in_id INT(100)
 )
 BEGIN

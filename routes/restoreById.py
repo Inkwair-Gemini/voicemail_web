@@ -4,7 +4,7 @@ import mysql.connector
 restoreById = Blueprint('restoreById', __name__)
 
 
-@restoreById.route('/user/restoreById', methods=['POST'])
+@restoreById.route('/delete/recoverById', methods=['POST'])
 def restoreByid():
     try:
         db_pool = current_app.config.get('db_pool')
@@ -18,7 +18,7 @@ def restoreByid():
         data = request.get_json()
         id= data.get('id')
         # 调用存储过程
-        cursor.callproc("RestoreVoiceByid", (id,))
+        cursor.callproc("recoverById", (id,))
         connection.commit()
         result = cursor.stored_results()
         validation_result = list(result)[0].fetchone()[0]
