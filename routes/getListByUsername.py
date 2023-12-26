@@ -4,7 +4,7 @@ import mysql.connector
 getListByUsername = Blueprint('getListByUsername', __name__)
 
 
-@getListByUsername.route('/delete/getListByUsername', methods=['POST'])
+@getListByUsername.route('/delete/getListByUsername', methods=['GET'])
 def getListByusername():
     try:
         db_pool = current_app.config.get('db_pool')
@@ -13,8 +13,7 @@ def getListByusername():
         # 创建游标
         cursor = connection.cursor()
         # 获取数据
-        data = request.get_json()
-        username = data.get('username')
+        username = request.args.get('username')
 
         # 调用存储过程
         cursor.callproc("getListByUsername", (username,))
@@ -26,10 +25,9 @@ def getListByusername():
             for voicemail in voicemails:
                 results.append({
                     "id": str(voicemail[0]),
-                    "username": voicemail[1],
-                    "title":voicemail[2],
-                    "timestamp": voicemail[3].isoformat(),  # 转换为 ISO 格式
-                    "text": voicemail[4],
+                    "title": voicemail[2],
+                    "time": voicemail[3].isoformat(),  # 转换为 ISO 格式
+                    "data": voicemail[4],
                 })
         print(f'数据库结果：{results}')
         if results is not None:

@@ -4,7 +4,7 @@ import mysql.connector
 deleteById = Blueprint('deleteById', __name__)
 
 
-@deleteById.route('/user/deleteById', methods=['POST'])
+@deleteById.route('/user/deleteById', methods=['GET'])
 def deleteByid():
     try:
         db_pool = current_app.config.get('db_pool')
@@ -15,8 +15,8 @@ def deleteByid():
         cursor = connection.cursor()
 
         # 获取请求中的数据
-        data = request.get_json()
-        id= data.get('id')
+        voiceId = request.args.get('id')
+
         # 调用存储过程
         cursor.callproc("deleteById", (id,))
         connection.commit()

@@ -4,7 +4,7 @@ import mysql.connector
 selectUserByUsername = Blueprint('selectUserByUsername', __name__)
 
 
-@selectUserByUsername.route('/user/selectUserByUsername', methods=['POST'])
+@selectUserByUsername.route('/user/selectUserByUsername', methods=['GET'])
 def selectUserByusername():
     try:
         db_pool = current_app.config.get('db_pool')
@@ -13,8 +13,7 @@ def selectUserByusername():
         # 创建游标
         cursor = connection.cursor()
         # 获取数据
-        data = request.get_json()
-        username= data.get('username')
+        username = request.args.get('username')
 
         # 调用存储过程
         cursor.callproc("selectuserByUsername", (username,))
