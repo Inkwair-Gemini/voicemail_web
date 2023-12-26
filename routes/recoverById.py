@@ -4,7 +4,7 @@ import mysql.connector
 recoverById = Blueprint('recoverById', __name__)
 
 
-@recoverById.route('/delete/recoverById', methods=['POST'])
+@recoverById.route('/delete/recoverById', methods=['GET'])
 def recoverByid():
     try:
         db_pool = current_app.config.get('db_pool')
@@ -15,8 +15,7 @@ def recoverByid():
         cursor = connection.cursor()
 
         # 获取请求中的数据
-        data = request.get_json()
-        id= data.get('id')
+        id= request.args.get("id")
         # 调用存储过程
         cursor.callproc("recoverById", (id,))
         connection.commit()
