@@ -13,6 +13,7 @@ def getListByusername():
         # 创建游标
         cursor = connection.cursor()
         # 获取数据
+        print(request)
         username = request.args.get('username')
 
         # 调用存储过程
