@@ -55,6 +55,8 @@ BEGIN
     -- 获取更新的行数
     IF ROW_COUNT() > 0 THEN
         SELECT TRUE AS update_success;
+    Else
+        SELECT FALSE AS update_success;
     END IF;
 END;
 -- 获取deletestatus=1的记录
