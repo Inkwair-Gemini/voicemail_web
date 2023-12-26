@@ -15,7 +15,7 @@ def deleteByid():
         cursor = connection.cursor()
 
         # 获取请求中的数据
-        voiceId = request.args.get('id')
+        id = request.args.get('id')
 
         # 调用存储过程
         cursor.callproc("deleteById", (id,))
