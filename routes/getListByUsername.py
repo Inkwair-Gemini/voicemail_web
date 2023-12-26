@@ -33,7 +33,7 @@ def getListByusername():
                 })
         print(f'数据库结果：{results}')
         if results is not None:
-            return jsonify({'voicemails': results})
+            return jsonify({'deleteList': results})
         else:
             return jsonify({"error": "检索失败"}), 500
 
