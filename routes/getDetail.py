@@ -4,20 +4,11 @@ from gtts import gTTS
 from io import BytesIO
 import base64
 
-sendAllVoice = Blueprint('sendAllVoice', __name__)
+getDetail = Blueprint('getDetail ', __name__)
 
 
-def text_to_audio(text):
-    # 使用 gTTS 将文本转换为中文语音
-    tts = gTTS(text=text, lang='zh-cn')
-    # 将音频数据保存到 BytesIO 对象中
-    audio_data = BytesIO()
-    tts.write_to_fp(audio_data)
-    return audio_data.getvalue()
-
-
-@sendAllVoice.route('/user/sendAllVoice', methods=['POST'])
-def sendAllvoice():
+@getDetail .route('/user/getDetail', methods=['POST'])
+def getdetail ():
     try:
         db_pool = current_app.config.get('db_pool')
         # 从连接池获取连接
@@ -26,11 +17,11 @@ def sendAllvoice():
         cursor = connection.cursor()
         # 获取数据
         data = request.get_json()
-        username = data.get('username')
-        print(username)
+        id = data.get('id')
+        print(id)
 
         # 调用存储过程
-        cursor.callproc("sendAllVoice", (username,))
+        cursor.callproc("gettexttielByid", (id,))
         connection.commit()
         # 获取结果
         results = []
@@ -38,9 +29,10 @@ def sendAllvoice():
             voicemails = result.fetchall()
             for voicemail in voicemails:
                 results.append({
-                    "id": str(voicemail[0]),
-                    "title": voicemail[2],
+                    "title": voicemail[1],
+                    "text": voicemail[0],
                 })
+
         print(f'数据库结果：{results}')
         if results:
             return jsonify({'voicemails': results})

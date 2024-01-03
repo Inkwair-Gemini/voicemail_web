@@ -78,3 +78,21 @@ BEGIN
     FROM voice
     WHERE username = in_username AND deletestatus = 0;
 END;
+
+CREATE PROCEDURE gettextByid(
+    IN in_id VARCHAR(100)
+)
+BEGIN
+    SELECT text
+    FROM voice
+    WHERE id = in_id ;
+END;
+
+CREATE PROCEDURE gettexttielByid(
+    IN in_id VARCHAR(100)
+)
+BEGIN
+    SELECT text,title
+    FROM voice
+    WHERE id = in_id ;
+END;

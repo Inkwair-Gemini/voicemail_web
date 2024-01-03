@@ -3,7 +3,7 @@ import mysql.connector
 from flask_cors import CORS
 
 import config
-from routes import addUser, loginUser, updateUser, addVoice, sendAllVoice, deleteVoiceByid, selectUserByUsername, recoverById, deleteById, getListByUsername
+from routes import addUser, loginUser, updateUser, addVoice, sendAllVoice,getVoice,getDetail, deleteVoiceByid, selectUserByUsername, recoverById, deleteById, getListByUsername
 
 app = Flask(__name__)
 CORS(app, origins="*")
@@ -23,5 +23,7 @@ app.register_blueprint(selectUserByUsername.selectUserByUsername)
 app.register_blueprint(recoverById.recoverById)
 app.register_blueprint(deleteById.deleteById)
 app.register_blueprint(getListByUsername.getListByUsername)
+app.register_blueprint(getDetail.getDetail)
+app.register_blueprint(getVoice.getVoice)
 if __name__ == "__main__":
     app.run(debug=True)

@@ -14,7 +14,6 @@ def updateuser():
         cursor = connection.cursor()
         # 获取数据
         data = request.get_json()
-        id = data.get('id')
         username= data.get('username')
         avatarUrl = data.get('avatarUrl')
         print(f'修改头像URL请求：username={username} avatarUrl={avatarUrl}')
