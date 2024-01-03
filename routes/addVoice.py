@@ -8,7 +8,7 @@ import openai
 from pydub import AudioSegment
 from pydub.playback import play
 def get_api_key():
-    openai_key_file = "D:\\桌面\\apiKey.json"
+    openai_key_file = "../api/apiKey.json"
     with open(openai_key_file, 'r', encoding='utf-8') as f:
         openai_key = json.loads(f.read())
     return openai_key['api']
@@ -32,7 +32,7 @@ def addvoice():
         timestamp_1 = datetime.strptime(timestamp_str, '%a %b %d %Y %H:%M:%S GMT%z (香港标准时间)')
         timestamp = timestamp_1.date()
 
-        local_path = r'D:\桌面\大三上\人机交互和界面设计\课程设计\语音文件\保存路径'
+        local_path = r'../voice/'
         file_name = f'{username}_{formatted_timestamp}.wav'
         url = os.path.join(local_path, file_name)
 
